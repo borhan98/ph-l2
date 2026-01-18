@@ -1,4 +1,42 @@
-import Stack from "../M3/v3";
+class Stack {
+  constructor() {
+    this.items = [];
+  }
+
+  // o(1)
+  push(val) {
+    this.items.push(val);
+  }
+
+  // o(1)
+  pop() {
+    if (this.isEmpty()) {
+      return undefined;
+    }
+
+    return this.items.pop();
+  }
+
+  // o(1)
+  peek() {
+    if (this.isEmpty()) {
+      return undefined;
+    }
+
+    return this.items[this.items.length - 1];
+  }
+
+  // o(1)
+  isEmpty() {
+    return this.items.length === 0;
+  }
+
+  // o(n)
+  print() {
+    console.log(this.items.slice().reverse().join(" -> "));
+  }
+}
+
 
 //* Problem statement
 
@@ -15,3 +53,33 @@ import Stack from "../M3/v3";
 //?"(]" => false
 //?"(()" => false
 
+const bracketChecker = (stringBracket) => {
+  const stack = new Stack();
+
+  const expectedBracket = {
+    ")": "(",
+    "}": "{",
+    "]": "[",
+  }
+
+  for (let i = 0; i < stringBracket.length; i++) {
+    let bracket = stringBracket[i];
+
+    if (bracket === "(" || bracket === "{" || bracket === "[") {
+      stack.push(bracket);
+    } else if (bracket === ")" || bracket === "}" || bracket === "]") {
+      if (stack.isEmpty()) {
+        return false;
+      }
+
+      if(stack.pop() !== expectedBracket[bracket]) {
+        return false;
+      }
+    }
+  }
+
+  return stack.isEmpty();
+}
+
+console.log(bracketChecker("([{}])"));
+console.log(bracketChecker("(])"));
