@@ -1,7 +1,7 @@
 //? Problem statement
 
 /**
- * given an array of integer numbers and and integer target number,
+ * given an array of integer numbers and a integer target number,
  * return the indexes of the two numbers such that they add up to target.
  * if there is no solution then return undefined
  * 
