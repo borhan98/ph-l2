@@ -17,6 +17,7 @@ type Users = {
   age: number
 }
 
+// const users: GenericArray<Users> = [
 const users: GenericArray<{name: string, age: number}> = [
   {
     name: 'Y',
